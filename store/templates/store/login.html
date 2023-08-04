@@ -1,0 +1,30 @@
+{% extends 'store/main.html' %}
+
+{% block content %}
+
+<div class="col-md-6 offset-md-3">
+  <h1>login</h1>
+
+  <br>
+  <form method="POST" action="{% url 'login' %}">
+    {% csrf_token%}
+    <div class="form-group">
+
+      <input type="text" class="form-control" name="username" placeholder="Enter your username">
+    </div>
+    <br>
+    <div class="form-group">
+      <input type="password" class="form-control" name="password" placeholder="Password">
+    </div>
+    <br>
+    <button type="submit" class="btn btn-secondary">Submit</button>
+  </form>
+
+
+
+
+</div>
+
+
+
+{% endblock %}

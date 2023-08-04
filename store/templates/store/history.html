@@ -1,0 +1,26 @@
+{% extends 'store/main.html' %} 
+
+{% block content %}
+    <h2>Order History for {{ request.user.username }}</h2>
+    {% if orders %}
+        <ul>
+            {% for order in orders %}
+                <li>
+                    Order ID: {{ order.id }}<br>
+                    Order Date: {{ order.date_ordered }}<br>
+                    Items:
+                    <ul>
+                        {% for item in order.orderitem_set.all %}
+                            <li>{{ item.product.name }} - Quantity: {{ item.quantity }}</li>
+                        {% endfor %}
+                    </ul>
+                    Total Amount: ₹{{ order.get_cart_total }}<br>
+                    Status: {% if order.complete %}Complete{% else %}Pending{% endif %}<br>
+                </li>
+                <br>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No orders found, Order something to see the order history.</p>
+    {% endif %}
+{% endblock %}
